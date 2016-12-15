@@ -5,6 +5,7 @@ namespace Dadata;
 use Dadata\Response\AbstractResponse;
 use Dadata\Response\Address;
 use Dadata\Response\Date;
+use Dadata\Response\vehicle;
 use Dadata\Response\Email;
 use Dadata\Response\Name;
 use Dadata\Response\Passport;
@@ -181,6 +182,26 @@ class Client
         $result = $this->populate(new Date, $response);
         if (!$result instanceof Date) {
             throw new RuntimeException('Unexpected populate result: ' . get_class($result). '. Expected: ' . Date::class);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Cleans vehicle.
+     *
+     * @param string $vehicle
+     *
+     * @return Vehicle
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public function cleanVehicle($vehicle)
+    {
+        $response = $this->query($this->prepareUri('clean/vehicle'), [$vehicle]);
+        $result = $this->populate(new Vehicle, $response);
+        if (!$result instanceof Vehicle) {
+            throw new RuntimeException('Unexpected populate result: ' . get_class($result). '. Expected: ' . Vehicle::class);
         }
 
         return $result;
