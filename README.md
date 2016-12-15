@@ -36,6 +36,3 @@ $response = $client->cleanName('Срегей владимерович ивано
 $response = $client->cleanEmail('serega@yandex/ru');
 $response = $client->cleanDate('24/3/12');
 ```
-
-### Suggestions
-
